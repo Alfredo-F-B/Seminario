@@ -10,7 +10,7 @@ namespace proyecto_seminario.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "Pagina de inicio!";
 
             return View();
         }
