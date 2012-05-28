@@ -2,9 +2,64 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>@ViewBag.Message</h2>
-<p>
-    Esta sera la pagina de inicio <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
-<hr/>
-<marquee direction="up" scrooldelay="800"> top 10 articulos </marquee>
+
+                <div id="izq">
+					
+	                Contenido
+               
+					
+				</div>				
+				<div id="cuerpo">
+                   
+					<h1 align ="center">Que hay de nuevo</h1>
+					<hr/>
+                    @foreach (var item1 in @ViewBag.valor)
+                    {
+                        
+                        <div id="recuadro">
+						    <div id="imagen">
+                                   <img src="@item1.ruta" />
+                             </div>
+							@item1.detalle
+						
+						    <div id="limpiador">      </div>
+                        </div>
+					<hr/>
+        
+             
+                    } 
+					
+					<p>
+						Aun no sabemos q entrara aqui, ojala sea algo novedoso
+					</p>
+					<div id="navabajo">
+						<a href="#">Volver</a> |
+						<a href="#">Portada</a> |
+						<a href="#">Mapa del sitio</a>
+					</div>
+				</div> 
+				<div id="lateral">
+					<h2 class="titlat">Buscar</h2>
+						<div id="fbuscar" class="cuerpolateral">
+						<form name="formulario" action="">
+							<div id="campotexto"><input type="text" name="criterio" /></div>
+							<div id="botonbuscar"><input type="image" src="images/go.gif" width="25" /></div>
+							<div class="radio"><input type="radio" name="op" value="1" /> En la Web</div>
+							<div class="radio"><input type="radio" name="op" value="2" /> En internet</div>
+						</form>
+						</div>
+					<div id="registro" class="cuerpolateral">
+						<a href="#">Registrese con nosotros</a> y obtenga muchas ventajas.
+					</div> 
+					<h2 class="titlat">Otras informaciones</h2>
+					<div id="otras" class="cuerpolateral">
+					<ul>
+						<li><a href="#">Algo</a></li>
+						<li><a href="#">Algo</a></li>
+						<li><a href="#">Algo</a></li>
+					</ul>
+					</div> 
+				</div>
+				
+
+
