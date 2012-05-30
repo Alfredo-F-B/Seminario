@@ -76,10 +76,9 @@ namespace proyecto_seminario.Controllers
                         Session["conteo"] = 0;
                     }
                     else {
-                        ModelState.AddModelError("", "Te quedan " + Session["conteo"] + " intentos");
+                        ModelState.AddModelError("", "Puedes intentar " + Session["conteo"] + " veces mas");
                     }
                     ViewBag.x = Session["conteo"];
-                    //ModelState.AddModelError("", "Te quedan " + Session["conteo"] + " intentos");
                 }
             }
 
@@ -116,9 +115,15 @@ namespace proyecto_seminario.Controllers
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
                 Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+               
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    linq_sqlDataContext db = new linq_sqlDataContext();
+                    Usuario U = new Usuario { IdUsuario = System.Guid.NewGuid(), ApellidoPat = "", ApellidoMat = "", Nombre = "", Email = model.Email, Contrasena = model.Password, Avatar = "", Intereses = "", Karma = 0, NickName = "", Ubicacion = "" };
+
+                    db.Usuarios.InsertOnSubmit(U);
+                    db.SubmitChanges();
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
@@ -189,15 +194,15 @@ namespace proyecto_seminario.Controllers
         {
             var rand = new Random((int)DateTime.Now.Ticks);
 
-            //generate new question
+            
             int a = rand.Next(10, 99);
             int b = rand.Next(0, 9);
             var captcha = string.Format("{0} + {1} = ?", a, b);
 
-            //store answer
+            
             Session["Captcha"] = a + b;
             ViewBag.y=Session["Captcha"];
-            //image stream
+            
             FileContentResult img = null;
              
             using (var mem = new MemoryStream())
@@ -208,7 +213,7 @@ namespace proyecto_seminario.Controllers
                 gfx.SmoothingMode = SmoothingMode.AntiAlias;
                 gfx.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
 
-                //add noise
+            
                 if (noisy)
                 {
                     int i, r, x, y;
@@ -228,10 +233,10 @@ namespace proyecto_seminario.Controllers
                     }
                 }
 
-                //add question
+            
                 gfx.DrawString(captcha, new Font("Tahoma", 15), Brushes.Gray, 2, 3);
 
-                //render as Jpeg
+            
                 bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);
                 img = this.File(mem.GetBuffer(), "image/Jpeg");
             }

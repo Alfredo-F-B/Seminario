@@ -4,25 +4,34 @@
 
 
                 <div id="izq">
-					
-	                Contenido
-               
-					
-				</div>				
+                    <H4 align = center>Selecciona la categoria:</H4>
+                    <br/>
+					@foreach (var i in @ViewBag.catego) { 
+                           <a href="#">@i.nombre</a>
+     
+                    }
+               	</div>				
 				<div id="cuerpo">
                    
-					<h1 align ="center">Que hay de nuevo</h1>
+					<h1 align ="center">Publicaciones mas recientes</h1>
 					<hr/>
                     @foreach (var item1 in @ViewBag.valor)
                     {
                         
                         <div id="recuadro">
+                            <H3 ><a href="#">@item1.titulo</a></H3>
+                            <div id="mas_info">
+                            Categoria:<br/><a href="#">@item1.categoria</a><br/>
+                            Me gusta:<br/> <a href="#">@item1.megusta</a>
+                            </div>
 						    <div id="imagen">
-                                   <img src="@item1.ruta" />
+                                   <a href="#"><img src="@item1.portada" alt="imagen"/></a>
                              </div>
-							@item1.detalle
+							@item1.descripcion
 						
-						    <div id="limpiador">      </div>
+						    <div id="limpiador">
+                                   
+                            </div>
                         </div>
 					<hr/>
         
@@ -34,8 +43,7 @@
 					</p>
 					<div id="navabajo">
 						<a href="#">Volver</a> |
-						<a href="#">Portada</a> |
-						<a href="#">Mapa del sitio</a>
+						<a href="#">Portada</a> 
 					</div>
 				</div> 
 				<div id="lateral">
@@ -49,7 +57,9 @@
 						</form>
 						</div>
 					<div id="registro" class="cuerpolateral">
-						<a href="#">Registrese con nosotros</a> y obtenga muchas ventajas.
+                        @if(!Request.IsAuthenticated){
+						    <text> @Html.ActionLink("Registrese con nosotros", "../Account/Register") y obtenga muchas ventajas.</text>
+                        }
 					</div> 
 					<h2 class="titlat">Otras informaciones</h2>
 					<div id="otras" class="cuerpolateral">

@@ -124,7 +124,6 @@ INPUT {
 	margin: auto;
 }
 #recuadro{
-	color: #FFFFFF;
 	background-color: #97FFFF;
 	
 	border-radius:7px;
@@ -141,7 +140,12 @@ INPUT {
 	margin: 2px 2px 2px 2px;
 	float: right;
 }
+#mas_info
+{
+    width:120px;
+    float:right;
 
+    }
 #imagen img{
 	width:	80px;
 	

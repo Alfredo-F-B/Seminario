@@ -12,19 +12,12 @@ namespace proyecto_seminario.Controllers
     {
         public ActionResult Index()
         {
-            SqlConnection con = new SqlConnection("Data Source=ILLUSION_V2;Initial Catalog=semi2;Integrated Security=True");
-            con.Open();
-            SqlCommand com = new SqlCommand("select detalle,ruta_imagen from libro", con);
-            SqlDataReader reader = com.ExecuteReader();
-            List<Libro> x= new List<Libro>();
-            while (reader.Read())
-            {
-                Libro l = new Libro();
-                l.ruta = reader.GetString(1);
-                l.detalle = reader.GetString(0);
-                x.Add(l);
-            }
-            ViewBag.valor = x;
+
+            linq_sqlDataContext db = new linq_sqlDataContext();
+            List<CategoriaView> cat = db.Categorias.Select(a => new CategoriaView { id = a.IdCategoria, nombre = a.Nombre }).ToList();
+            List<Libros> descr = db.Info_Libros.Select(b => new Libros { id_pub = b.IdPublicacion, titulo = b.Titulo, descripcion = b.Descripcion, categoria = b.Nombre, megusta =Convert.ToInt32( b.MeGusta.ToString()), portada = b.Portada }).ToList();
+            ViewBag.catego = cat;
+            ViewBag.valor = descr;
             return View();
         }
 
