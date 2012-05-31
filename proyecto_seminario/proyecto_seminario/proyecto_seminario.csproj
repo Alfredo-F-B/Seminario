@@ -170,6 +170,7 @@
       <LastGenOutput>linq_sql.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Home\Detalle_libro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\linq_sql.dbml.layout">

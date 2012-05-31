@@ -27,7 +27,8 @@ create table Categoria(
 )
 
 go
-
+insert into Categoria values('Ciencia y tecnologia'),('Deportes')
+go
 
 create table Publicacion(
 	IdPublicacion int identity(1,1) primary key,
@@ -37,6 +38,8 @@ create table Publicacion(
 )
 go
 
+ insert into Publicacion values('Guia de musculacion','Una guia completa sobre rutinas de musculacion',2),('MVC 3.0','Manual basico de MVC 3.0 en ingles',1)
+ go
 create table Articulo(
 	IdPublicacion int foreign key references Publicacion(IdPublicacion),
 	Tema varchar(50),
@@ -69,6 +72,9 @@ Create table Libro(
 )
 go
 
+insert into Libro values(1,'Aqui va la ruta','otra ruta','contenidos/IMG0001.jpg','Ni idea','1989-01-01',0),(2,'Aqui va la ruta','otra ruta','contenidos/IMG0002.jpg','Ni idea','1989-01-01',0)
+ go
+
 create table Comentario(
 	Id_Com int identity (1,1) primary key,
 	Id_Us uniqueidentifier foreign key references Usuario(IdUsuario),
@@ -86,11 +92,7 @@ go
 
 
 
-select * from Usuario
-select * from aspnet_Membership
-select * from Publicacion
-select * from Libro
-select * from Categoria
+
 
 create view Info_Libro as
 	select p.IdPublicacion,p.Titulo,p.Descripcion,l.Portada,l.MeGusta,cat.Nombre
@@ -98,16 +100,13 @@ create view Info_Libro as
 	where l.IdPublicacion=p.IdPublicacion and p.Id_Cat=cat.IdCategoria
 	
 go
-insert into Categoria values('Ciencia y tecnologia')
-insert into Categoria values('Deportes')
 
- insert into Publicacion values('Guia de musculacion','Una guia completa sobre rutinas de musculacion',2)
- insert into Publicacion values('MVC 3.0','Manual basico de MVC 3.0 en ingles',1)
- 
- 
- insert into Libro values(3,'Aqui va la ruta','otra ruta','contenidos/IMG0001.jpeg','Ni idea','1989-01-01',0)
- insert into Libro values(4,'Aqui va la ruta','otra ruta','contenidos/IMG0002.jpeg','Ni idea','1989-01-01',0)
+
  
  
  
  
+select * from Usuario
+select * from Publicacion
+select * from Libro
+select * from Categoria 

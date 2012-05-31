@@ -6,10 +6,12 @@
                 <div id="izq">
                     <H4 align = center>Selecciona la categoria:</H4>
                     <br/>
+                    <ul>
 					@foreach (var i in @ViewBag.catego) { 
-                           <a href="#">@i.nombre</a>
+                           <li><a href="#">@i.nombre</a></li>
      
                     }
+                    </ul>
                	</div>				
 				<div id="cuerpo">
                    
@@ -19,7 +21,10 @@
                     {
                         
                         <div id="recuadro">
-                            <H3 ><a href="#">@item1.titulo</a></H3>
+                            @{
+                                string x=item1.titulo;   
+                             }
+                            <strong>@Html.ActionLink(x,"Detalle_libro")</strong>
                             <div id="mas_info">
                             Categoria:<br/><a href="#">@item1.categoria</a><br/>
                             Me gusta:<br/> <a href="#">@item1.megusta</a>

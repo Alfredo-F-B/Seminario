@@ -122,7 +122,7 @@ namespace proyecto_seminario.Controllers
                     linq_sqlDataContext db = new linq_sqlDataContext();
                     Usuario U = new Usuario { IdUsuario = System.Guid.NewGuid(), ApellidoPat = "", ApellidoMat = "", Nombre = "", Email = model.Email, Contrasena = model.Password, Avatar = "", Intereses = "", Karma = 0, NickName = "", Ubicacion = "" };
 
-                    db.Usuarios.InsertOnSubmit(U);
+                    db.Usuario.InsertOnSubmit(U);
                     db.SubmitChanges();
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
